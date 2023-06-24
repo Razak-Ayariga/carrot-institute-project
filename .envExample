@@ -1,0 +1,6 @@
+PORT = 7000
+DB_NAME = deliverySystem
+USER_NAME = root
+PASSWORD =
+HOST = localhost
+JWT_SECRET = example123
