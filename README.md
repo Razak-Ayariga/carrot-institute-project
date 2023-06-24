@@ -1,5 +1,27 @@
 # Delivery app
-This app is developed using express Node.js and mysql.
+This is a delivery app for ordering food.
+Node js with Express as Backend Framework
+Mysql sequelize for database and database management.
+
+## Get app Started
+
+First, Install Node Modules:
+ # In the root directory and in the client directory
+ bash
+ npm install
+ # or 
+ yarn install
+ 
+
+ Run app
+# In the root directory
+bash
+npm start
+# or
+yarn start
+
+# Testing the route
+Once the database is connected and the app is running, open postman to test the following routes using your own port and localhost.
 
 
 ## Restaurant Routes
@@ -11,7 +33,7 @@ Description: Registers a new restaurant.
 Request Body: JSON object containing the restaurant data.
 Expected Output: Returns the created restaurant object.
 
-### Sign In
+### Sign In 
 Endpoint: /restaurant/signIn
 Method: POST
 Auth Required: No
