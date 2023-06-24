@@ -3,6 +3,10 @@ This is a delivery app for ordering food.
 Node js with Express as Backend Framework
 Mysql sequelize for database and database management.
 
+## Data Base schema
+The schema for the data base can be found using this link:
+https://dbdiagram.io/d/649719c602bd1c4a5e01e96f
+
 ## Get app Started
 
 First, Install Node Modules:
