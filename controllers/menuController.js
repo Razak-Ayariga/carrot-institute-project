@@ -17,9 +17,9 @@ const createMenu = async (req, res) => {
 
 //update menu
 const updateMenu = async (req, res) => {
-  const newMenuInfo = req.body;
   try {
-    const { id } = req.params.id;
+    const { id } = req.params;
+    const newMenuInfo = req.body;
     const findMenu = await menuItem.findByPk(id);
     if (!findMenu) {
       return res.status(404).json({ message: "Recored not found!" });
@@ -33,6 +33,22 @@ console.log(error);
     res.status(500).json({ messaage: "Error!" });
   }
 };
+
+//view one menu item
+const oneMenu = async(req, res)=>{
+   try{
+     const{id}= req.params;
+     const findMenu = await menuItem.findByPk(id);
+     if(!findMenu){
+      return res.status(404).json({message:"Record not found"});
+     }
+     res.status(200).json({messaage:"Success", findMenu});
+   }catch(error){
+    console.log(error);
+    res.status(500).json({ messaage: "Error!" });
+   }
+
+}
 
 //view all menu of a restaurant
 const getAllMenu= async (req, res) => {
@@ -68,4 +84,4 @@ const cancelMenu = async (req, res) => {
   }
 };
 
-export { createMenu, updateMenu, cancelMenu, getAllMenu };
+export { createMenu, updateMenu, cancelMenu, getAllMenu, oneMenu };

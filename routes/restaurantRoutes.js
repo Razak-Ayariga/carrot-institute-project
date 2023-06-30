@@ -29,7 +29,7 @@ restaurantSignUp,
 );
 
 router.post("/signIn",
-    logoUpload("").single(""),
+    logoUpload("").none(""),
     signInValidator,
     restaurantToken,
     restaurantSignIn

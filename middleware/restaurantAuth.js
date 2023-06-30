@@ -13,6 +13,9 @@ dotenv.config();
 const findRestaurant = async (req, res, next) => {
   try {
     const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ message: "Email is required" });
+    }
     const existingRestaurant = await restaurants.findOne({ where: { email }});
     if (existingRestaurant) {
       res.status(403).json({ message: "User already exists. Please login!" });

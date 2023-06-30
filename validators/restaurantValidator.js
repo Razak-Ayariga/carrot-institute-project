@@ -53,7 +53,10 @@ const signInValidator = (req, res, next) => {
   }).with("email", "password");
   const { email, password } = req.body;
   const { error } = schema.validate({ email, password });
-  if (error) return res.status(400).json("email or password required");
+  if (error) {
+    console.log(error);
+    return res.status(400).json("email or password required");
+  }
   next();
 };
 

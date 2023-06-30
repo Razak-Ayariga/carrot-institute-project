@@ -51,7 +51,6 @@ const getAllUserOrders= async (req, res) => {
 //view all menu of a restaurant
 const getAllMenu= async (req, res) => {
   try {
-    // const id = req.restaurant_id;
     const findAllMenu = await menuItem.findAll();
     if (findAllMenu) {
       return res.status(200).json(findAllMenu);
