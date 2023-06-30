@@ -39,7 +39,7 @@ const orders = sequelize.define("orders", {
     status: {
         type: DataTypes.STRING,
         allowNull: true,
-        defaultValues: "pending"
+        defaultValue: "pending"
     }
 });
 (async () => {
