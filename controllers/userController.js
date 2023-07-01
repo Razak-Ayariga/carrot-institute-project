@@ -61,4 +61,22 @@ const getAllMenu= async (req, res) => {
   }
 };
 
-export { userSignUp, userSignIn, getAllUserOrders, getAllMenu };
+//Delete user account
+const deleteUser = async(req, res)=>{
+  try{
+      const {id} = req.params;
+      const userRecord = await users.findByPk(id);
+      if(!userRecord){
+        return res.status(404).json({message:"Useer not found"});
+      }
+      const deleteResults = await users.destroy({where:{id:id}});
+      if(deleteResults){
+        res.status(200).json({message:"Deleted successfully!"});
+      }
+  }catch(error){
+    console.log(error);
+    res.status(500).json({message:"Error"})
+  }
+}
+
+export { userSignUp, userSignIn, getAllUserOrders, getAllMenu, deleteUser };

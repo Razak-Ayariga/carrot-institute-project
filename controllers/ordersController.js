@@ -1,3 +1,4 @@
+import menuItem from "../models/menuModel.js";
 import orders from "../models/ordersModel.js";
 
 const placeOrder = async (req, res) => {
@@ -5,6 +6,11 @@ const placeOrder = async (req, res) => {
         const newOrder = req.body;
         const id = req.user_id;
         newOrder["user_id"] = id;
+        const {menuId} = req.params
+        const findMenu = await menuItem.findByPk(menuId);
+        if(!findMenu){
+          return res.status(404).json({message:"Menu not found"});
+        }
         const addOrder = await orders.create(newOrder);
         if (addOrder) {
             res.status(201).json({ message: "Order successful!" })
@@ -33,6 +39,20 @@ console.log(error);
     res.status(500).json({ messaage: "Error!" });
   }
 };
+
+//get one order
+const oneOrder = async(req, res)=>{
+  try{
+     const{id}= req.params;
+     const findOrder = await orders.findByPk(id);
+     if(!findOrder){
+      return res.status(404).json({message:"Order not found"});
+     }
+     res.status(200).json({mesage:"successful", findOrder});
+  }catch(error){
+    console.log(error).json({message:"Error getting record"});
+  }
+}
 
 // get all orders of a user
 const getAllUserOrders= async (req, res) => {
@@ -68,6 +88,4 @@ const cancelOrder = async (req, res) => {
   }
 };
 
-
-
-export { placeOrder, updateOrder,getAllUserOrders, cancelOrder };
+export { placeOrder, updateOrder, oneOrder, getAllUserOrders, cancelOrder };
